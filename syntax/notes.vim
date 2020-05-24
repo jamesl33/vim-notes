@@ -162,8 +162,8 @@ syntax match notesCodeStart /```\w*/
 syntax match notesCodeEnd /```\W/
 syntax match notesCodeStart /{{[{]\w*/
 syntax match notesCodeEnd /}}[}]/
-highlight def link notesCodeStart Ignore
-highlight def link notesCodeEnd Ignore
+highlight def link notesCodeStart Special
+highlight def link notesCodeEnd Special
 call xolox#notes#highlight_sources(1)
 
 " Hide mode line at end of file. {{{2
