@@ -58,10 +58,6 @@ let b:undo_ftplugin .= ' | execute "iunmap <buffer> @"'
 " for this we have to change the (unfortunately) global option &completeopt.
 set completeopt+=longest
 
-" Change double-dash to em-dash as it is typed. {{{1
-inoremap <buffer> <expr> -- xolox#notes#insert_em_dash()
-let b:undo_ftplugin .= ' | execute "iunmap <buffer> --"'
-
 " Change plain quotes to curly quotes as they're typed. {{{1
 inoremap <buffer> <expr> ' xolox#notes#insert_quote("'")
 inoremap <buffer> <expr> " xolox#notes#insert_quote('"')
@@ -85,10 +81,6 @@ if g:notes_smart_quotes
   let b:undo_ftplugin .= ' | execute "iunmap <buffer> -"'
   let b:undo_ftplugin .= ' | execute "iunmap <buffer> +"'
 endif
-
-" Format three asterisks as a horizontal ruler. {{{1
-inoremap <buffer> *** <C-o>:call xolox#notes#insert_ruler()<CR>
-let b:undo_ftplugin .= ' | execute "iunmap <buffer> ***"'
 
 " Indent list items using <Tab> and <Shift-Tab>? {{{1
 if g:notes_tab_indents

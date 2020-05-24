@@ -981,20 +981,6 @@ endfunction
 
 " Functions called by the file type plug-in and syntax script. {{{2
 
-function! xolox#notes#insert_ruler() " {{{3
-  " Insert horizontal ruler delimited by empty lines.
-  let lnum = line('.')
-  if getline(lnum) =~ '\S' && getline(lnum + 1) !~ '\S'
-    let lnum += 1
-  endif
-  let line1 = prevnonblank(lnum)
-  let line2 = nextnonblank(lnum)
-  if line1 < lnum && line2 > lnum
-    execute printf('%i,%idelete', line1 + 1, line2 - 1)
-  endif
-  call append(line1, ['', g:notes_ruler_text, ''])
-endfunction
-
 function! xolox#notes#insert_quote(chr) " {{{3
   " XXX When I pass the below string constants as arguments from the file type
   " plug-in the resulting strings contain mojibake (UTF-8 interpreted as
@@ -1008,11 +994,6 @@ function! xolox#notes#insert_quote(chr) " {{{3
     return getline('.')[col('.')-2] =~ '[^\t (]$' ? close_quote : open_quote
   endif
   return a:chr
-endfunction
-
-function! xolox#notes#insert_em_dash() " {{{3
-  " Change double-dash (--) to em-dash (—) as it is typed.
-  return (g:notes_smart_quotes && xolox#notes#unicode_enabled() && !xolox#notes#currently_inside_snippet()) ? '—' : '--'
 endfunction
 
 function! xolox#notes#insert_left_arrow() " {{{3
