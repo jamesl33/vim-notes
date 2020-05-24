@@ -167,7 +167,9 @@ function! xolox#notes#edit(bang, title) abort " {{{1
   let fname = xolox#notes#title_to_fname(title)
   noautocmd execute 'edit' . a:bang fnameescape(fname)
   if line('$') == 1 && getline(1) == ''
-    execute 'silent read' fnameescape(g:notes_new_note_template)
+    if g:notes_new_note_template != ''
+      execute 'silent read' fnameescape(g:notes_new_note_template)
+    endif
     1delete
     if !xolox#notes#unicode_enabled()
       call s:transcode_utf8_latin1()
